@@ -1,0 +1,46 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+#define mod 1000000007
+int main() {
+int t;
+cin>>t;
+while(t--)
+{unsigned long long int m,n,mi,ma,k,t=1;
+	cin>>m>>n;
+	mi=min(n,m);
+	ma=max(m,n);
+	k=1;
+	int a[mi];
+		for(int j=0;j<mi;j++){
+	        a[j]=j+1;
+	        
+	    }
+	for(int i=ma+1;i<=m+n;i++){
+	    t*=i;
+	    	for(int j=mi-1;j>0;j--){
+	    if(a[j]>1 && t%a[j]==0)
+	       { t/=a[j];
+	        a[j]=1;}
+	   else if(a[j]>1){
+	       int u=a[j];
+	       for(k=2;k<u;k++){
+	           if(u%k==0 && t%k==0)
+	           {
+	               u/=k;
+	               t/=k;
+	               a[j]=u;
+	           }
+	       }
+	       
+	     }
+	    }
+	    
+	    t%=mod;
+	}
+	t%=mod;
+	
+	cout<<t<<'\n';
+}
+	return 0;
+}
