@@ -1,0 +1,154 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int main() {
+    
+    long int n,t,f,s,l=0;
+    cin>>n;
+    t=n;
+    while(n){
+        l++;
+        n/=10;
+    }
+    n=t;
+ int v[l];
+    for(int i=l-1;i>=0;i--){
+        v[i]=n%10;
+        n/=10;
+    }
+    n=t;
+    int aa,bb; aa=bb=0;
+ 
+   for(int i=0;i<l;i++){
+  if(v[i]==4)aa++;
+  if(v[i]==7)bb++;
+ 
+   }
+ 
+ if(aa==bb && aa+bb==l){
+for(int i=0;i<l;i++)cout<<v[i];
+ }
+ 
+ else{   int r=pow(10,l-1);
+    r=t/r;
+   if(!(l%2) && r<7){ int a[l];
+    for(int i=l-1;i>=0;i--){
+        a[i]=n%10;
+        n/=10;
+    }
+    f=s=0;
+    int i, u=0;
+//for(int i=0;i<l;i++)cout<<a[i]; cout<<"\n";
+   for(i=0;i<l;i++){
+  // cout<<i<<" ";
+   if((a[i]<4||u) && f<l/2 || (s && s<l/2 && f<l/2 && u)){
+       u++;
+     //  cout<<a[i];
+       a[i]=4;
+       f++;
+   }
+   else if(a[i]==4 && f<l/2){
+        a[i]=4;
+       f++;
+   }
+   else if(u||a[i]<=7 && s<l/2){
+       if(a[i]<7)u++;
+       a[i]=7;
+       s++;
+   }
+  
+       else{
+           for(i--;i>=0;i--)
+           {
+               if(a[i]==4 && s<l/2){a[i]=7; s++; f--;break;}
+               else if(a[i]==4)f--;
+               if(a[i]==7)s--;
+           }
+           //cout<<i<<" ";
+           for(i++;i<l;i++){
+               if(f<l/2){a[i]=4; f++;}
+                else a[i]=7;
+                //cout<<i<<" ";
+           }
+           
+           break;
+       }
+   }
+for(int i=0;i<l;i++)cout<<a[i];
+   }
+ 
+else if(l%2==0 && r>7){
+    int a[l+2];
+ for(int i=0;i<l+2;i++){
+   if(i<(l/2)+1)a[i]=4;
+   else a[i]=7;
+   }
+for(int i=0;i<l+2;i++)cout<<a[i];
+   }
+   else if(l%2==0 && r==7){
+ int a[l];
+    for(int i=l-1;i>=0;i--){
+        a[i]=n%10;
+        n/=10;
+    }
+        f=s=0;
+        
+        int z,h,u,b[n]; z=h=u=0;b[0]=7; f++;
+       for(int i=1;i<l;i++){
+   if(a[i]==7 && f<l/2 && h<i && (a[i-1]>=b[i-1]) && u<1){
+       b[i]=7;
+       f++;
+   }
+   else if(a[i]<5 &&  s<l/2 ){
+       if(a[i]<4) u=1;
+       b[i]=4;
+       s++;
+      h++;
+  //  cout<<" ****"<<a[i]<<"**** "<<i<<endl;
+       
+   }
+   
+   else if(u>0 && s<l/2 && h>0){
+   b[i]=4;
+   s++;
+ //  cout<<" ****"<<a[i]<<"**** "<<i;
+   }
+   else if(f<l/2 && u && h){
+       b[i]=7;
+       f++;
+      // cout<<" ****"<<a[i]<<"**** ";
+   }
+   
+   else{
+     // for(int i=0;i<l+2;i++)cout<<b[i];cout<<" ";
+       z++;
+    break;
+   }
+ //  cout<<f<<"f u "<<u<<" h"<<h<<" \n";
+       }
+   if(z){
+       int b[l+2];
+        for(int i=0;i<l+2;i++){
+   if(i<(l+2)/2)b[i]=4;
+   else b[i]=7;
+   }
+for(int i=0;i<l+2;i++)cout<<b[i];
+   }
+if(z==0){for(int i=0;i<l;i++)cout<<b[i];}
+   }
+   
+ 
+   else{//cout<<"hi";
+       int a[l+1];
+       a[0]=4;
+    s=f=0;
+//for(int i=0;i<l;i++)cout<<a[i]; cout<<"\n";
+   for(int i=1;i<l+1;i++){
+   if(i<(l+1)/2)a[i]=4;
+   else a[i]=7;
+   }
+for(int i=0;i<l+1;i++)cout<<a[i];
+   }
+}
+//cout<<endl<<r;
+}
