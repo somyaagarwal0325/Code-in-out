@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+ 
+int main() {
+unsigned long long int t,p,i,c=0;
+string s;
+cin>>s;
+p=i=c=t=0;
+while(s[i]!='\0'&& i<9){
+    t+=(s[i]-48);
+    t*=10;
+    i++;
+}
+t/=10;
+//cout<<t<<" ";
+int a=1;
+while(t>9){
+    t=0;
+    if(a==1){for(i=0;s[i]!='\0';i++){
+        t+=(s[i]-48);
+    }a++; 
+    }
+    while(p){
+        t+=p%10;
+        p/=10;
+        a++;
+    }
+      p=t;
+     c++;
+}
+cout<<c;
+return 0;
+}
