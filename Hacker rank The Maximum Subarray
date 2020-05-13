@@ -1,0 +1,32 @@
+#include <iostream>
+#include<math.h>
+#include<algorithm>
+#include<string.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+        long long int n;
+        cin>>n;
+        long long int a[n],b[n]; long long int p,q,temp;
+        p=q=0;
+        memset(b,0,sizeof(b));
+        for(int i=0;i<n;i++){cin>>a[i]; if(a[i]>0)q+=a[i];}
+        if(q==0){ q=a[0];
+             for(int i=0;i<n;i++){
+                 if(a[i]<=0 && a[i]>q)q=a[i];
+             }
+             p=q;
+        }
+        else{p=a[0];temp=a[0];
+            for(int i=1;i<n;i++){
+              temp = max(a[i], temp + a[i]);
+              p= max(p, temp);
+         }
+        }
+         cout<<p<<" "<<q<<"\n";
+    }
+    return 0;
+}
